@@ -57,3 +57,4 @@ const arr = [1,22,3,6,44,32];
 console.log(filter<number>(arr,n=>n%2!==0));
 
 ```
+## 约束泛型
