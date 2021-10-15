@@ -58,3 +58,5 @@ console.log(filter<number>(arr,n=>n%2!==0));
 
 ```
 ## 约束泛型
+
+## 多泛型

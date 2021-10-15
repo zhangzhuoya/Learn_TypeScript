@@ -1,19 +1,14 @@
-// 约束泛型
-/**
- * 将某个对象的name属性的每个单词的首字母大写，然后将该对象返回
- */
-interface s {
-    name: string
-}
- function nameToUpperCases<T extends s>(o:T):T{
-    o.name = o.name.split("").map(s=>s[0].toUpperCase()+s.substr(1)).join("")
-    return o;
+// 多泛型
+// 将两个数组进行混合 [1,2,3,45] ['a','b','c','f','c']
+
+function mixinArray<T,K>(arr1: T[],arr2:K[]):(T|K)[] {
+    if (arr1.length!==arr2.length) {
+        throw new Error('两个数组的长度不等')
+    }
+    let result:(T|K)[]= [];
+        result.push(arr1[0])
+        result.push(arr2[1])
+        return result;
 
 }
-
-let os = {
-    name: 'zhangsan',
-    age: 21,
-    sex: 'man'
-}
-console.log(nameToUpperCases(os))
+console.log(mixinArray([1,3],["f","k"]))
