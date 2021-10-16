@@ -99,3 +99,54 @@ const p = new Pao();
 ## 设计模式 - 模板模式
 设计模式： 面对一些常见的功能场景，有一些固定的，经过多年实践的成熟方法，这些方法称之为设计模式。
 模板模式：有些方法，所有的流程完全一致，只是流程中的步骤具体实现不一致。可以将该方法提取到父类，在父类中完成功能整个流程的实现，遇到实现不一致的方法时，将该方法做成抽象方法。
+
+# 静态成员
+什么是静态成员： 附着在类上的成员（属于某个构造函数的）
+使用static修饰的成员，是静态成员
+实例成员：对象成员，属于某个类的对象
+静态成员：非实例成员，属于某个类
+
+## 静态方法中的this
+实例方法中的this指向的是当前的对象
+而静态方法中的this指向的是当前类。
+
+## 设计模式 - 单例模式
+单例模式：某些类中的对象在系统中最多只有一个，为了避免开发者造成随意创建多个类对象的错误，可以使用单例模式进行强约束
+```js
+class Board {
+    width:number = 90;
+    height:number = 700;
+    init() {
+        console.log('初始化操作');
+    }
+    protected static _board?: Board;
+    private constructor() {}
+    static createBoard(): Board {
+        if (this._board) {
+            return this._board
+        }
+        this._board = new Board();
+        return this._board;
+    }
+}
+const b1 = Board.createBoard()
+const b2 = Board.createBoard()
+console.log(b1===b2);
+```
+
+```js
+class Board {
+    width:number = 90;
+    height:number = 700;
+    init() {
+        console.log('初始化操作');
+    }
+    protected static _board?: Board;
+    private constructor() {}
+    static readonly singleBoard = new Board();// readdonly 防止重新赋值，程序一开始的时候就会创建，而不是在需要创建的时候。
+}
+const b1 = Board.singleBoard
+const b2 = Board.singleBoard
+console.log(b1===b2);
+
+```

@@ -1,4 +1,4 @@
-abstract class Chesss {
+abstract class Chess {
     x:number= 0
     y:number= 0
     move(targetX:number,targetY:number):boolean{
