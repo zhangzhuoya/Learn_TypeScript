@@ -31,7 +31,13 @@ super关键字：在子类的方法中，可以使用super关键字读取父类�
 ## protected修饰符
 readonly: 只读修饰符
 访问权限修饰符：private public protected：受保护的成员，只能在自身和子类中访问
+当成员被标记成private时，它就不能在声明它的类的外部访问。比如：
+class Animal {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
 
+new Animal("Cat").name; // 错误: 'name' 是私有的.
 ## 继承的传递性和单根性
 单根性： 每个类最多只能拥有一个父类
 传递性： 如果A时B的父类，并且B是C的父类，则可以认为A也是C的父类  
