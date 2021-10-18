@@ -143,7 +143,7 @@ class Board {
     }
     protected static _board?: Board;
     private constructor() {}
-    static readonly singleBoard = new Board();// readdonly 防止重新赋值，程序一开始的时候就会创建，而不是在需要创建的时候。
+    static readonly singleBoard = new Board();// readonly 防止重新赋值，程序一开始的时候就会创建，而不是在需要创建的时候。
 }
 const b1 = Board.singleBoard
 const b2 = Board.singleBoard
@@ -158,4 +158,49 @@ console.log(b1===b2);
 > 马戏团中有以下常见的技能：
 > - 火圈表演： 单火圈、双火圈
 > - 平衡表演： 独木桥，走钢丝
-> - 智慧表演：算术题，跳舞
+> - 智慧表演： 算术题，跳舞
+不使用接口实现时
+- 对能力（成员函数）没有强的约束力
+比如狮子可以跳火圈，但是容易把函数写错，没有很强的约束力
+- 容易将类型和能力耦合在一起。
+系统中缺少对能力的定义 - 接口
+面向对象领域中的接口语义：表达了某个类是否拥有某种能力
+
+类型保护函数： 通过调用该函数，会触发TS的类型保护，该函数必须返回Boolean类型
+接口和类型别名最大区别： 接口可以被类实现，而类型别名不可以，
+```js
+function hasFireShow(animal) {
+
+
+}
+animals.forEach(item=>{
+    if(item as unknown as IFireShow).singleFire && (item as unknown as IFireShow).doubleFire {
+        item.singleFire();
+        item.doubleFire()
+    }
+})
+
+```
+> 扩展 接口可以继承类，表示该类的所有成员都在接口中。
+```js
+class A {
+    a1:string = " ",
+    a2:string = " ",
+    a3:string = " "
+}
+class B {
+    b1:string = " ",
+    b2:string = " ",
+    b3:string = " "
+}
+
+interface  C extends A, B{
+
+}
+const d:C = {
+    a1 = "1",
+    a2 = "2",
+    a3 = "3"
+
+}
+```
