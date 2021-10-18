@@ -53,3 +53,22 @@ export class Monkey extends Animal implements Ishow {
         console.log(this.name+'我可以走钢丝');
     }
 }
+interface C extends Animal {
+
+}
+let a:C = {
+    type: '动物1',
+    age: 12,
+    name: 'z1',
+    sayHello() {
+
+    }
+}
+
+class D implements C {
+    type: string;
+    sayHello(): void {
+        throw new Error("Method not implemented.");
+    }
+
+}
